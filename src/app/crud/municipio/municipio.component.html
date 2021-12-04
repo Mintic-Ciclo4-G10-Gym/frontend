@@ -1,0 +1,38 @@
+<div class="menu"><app-menu></app-menu></div>
+<h1 class="text-center mt-5 me-5">{{titulo}}</h1>
+<div class="d-flex flex-wrap">
+    <div class="col-md-6 offset-md-1 col-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NOMBRE</th>
+                    <th colspan="2"></th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let entidad of entidades">
+                <tr>
+                    <td>{{entidad.id}}</td>
+                    <td>{{entidad.nombre}}</td>
+                    <td><a class="btn btn-success" (click)="editar(entidad)">Editar</a></td>
+                    <td><a class="btn btn-success" (click)="eliminar(entidad)">Eliminar</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-3 offset-md-1 col-12">
+        <form [formGroup]="formulario" (ngSubmit)="guardar()">
+            <div class="mb-3">
+                <label for="" class="form-label">ID</label>
+                <input type="text" class="form-control" placeholder="Ingresar id" formControlName="id">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Nombre</label>
+                <input type="text" class="form-control" placeholder="Ingresar nombre" formControlName="nombre">
+            </div>
+            <button type="submit" class="btn btn-success">Guardar</button>
+        </form>
+        <p class="mt-4">{{mensaje}}</p>
+        <img *ngIf="estado" src="../../../assets/loading.gif" alt="Cargando"/>
+    </div>
+</div>
